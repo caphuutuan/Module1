@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -8,6 +9,7 @@ builder.Services.AddControllersWithViews();
 
 var strConnectDB = builder.Configuration.GetConnectionString("ChuoiKN");
 
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 3; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
 builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(UnicodeRanges.All));
 builder.Services.AddHttpContextAccessor();
