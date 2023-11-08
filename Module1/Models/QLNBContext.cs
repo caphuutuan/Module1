@@ -60,8 +60,6 @@ namespace Module1.Models
 
                 entity.Property(e => e.NoiDung).HasMaxLength(50);
 
-                entity.Property(e => e.Status).HasMaxLength(50);
-
                 entity.Property(e => e.TenBb)
                     .HasMaxLength(50)
                     .HasColumnName("TenBB");
@@ -200,6 +198,8 @@ namespace Module1.Models
 
                 entity.ToTable("LinhVucNB");
 
+                entity.Property(e => e.Description).HasMaxLength(300);
+
                 entity.Property(e => e.TenLinhVuc).HasMaxLength(50);
             });
 
@@ -282,6 +282,8 @@ namespace Module1.Models
 
                 entity.Property(e => e.MaTl).HasColumnName("MaTL");
 
+                entity.Property(e => e.Description).HasMaxLength(300);
+
                 entity.Property(e => e.TenTl)
                     .HasMaxLength(50)
                     .HasColumnName("TenTL");
@@ -297,9 +299,7 @@ namespace Module1.Models
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 
-                entity.Property(e => e.NgaySinh)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.NgaySinh).HasColumnType("date");
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
@@ -307,8 +307,6 @@ namespace Module1.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("SDT");
-
-                entity.Property(e => e.Status).HasMaxLength(50);
 
                 entity.Property(e => e.Ten).HasMaxLength(50);
 

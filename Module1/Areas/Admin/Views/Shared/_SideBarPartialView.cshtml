@@ -36,7 +36,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
-                    <a class="nav-link active bg-primary" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link active bg-primary" href="~/admin" asp-area="Admin" asp-controller="Home" asp-action="Index">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -54,31 +54,24 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link disabled">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Users
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">@(ViewBag.countRole ?? "?")</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="~/Admin/Accounts/Index" class="nav-link">
+                                    <a href="~/Admin/Users/Index" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="~/Admin/Accounts/Create" class="nav-link">
+                                    <a href="~/Admin/Users/Create" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Thêm mới</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/Admin/Accounts/Trash" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Thùng rác</p>
                                     </a>
                                 </li>
                             </ul>
@@ -93,50 +86,38 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index" class="nav-link">
+                                    <a href="~/Admin/Roles/Index" asp-area="Admin" asp-controller="Roles" asp-action="Index" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="AdminRoles" asp-action="Create" class="nav-link">
+                                    <a href="~/admin/roles/create" asp-area="Admin" asp-controller="Roles" asp-action="Create" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Thêm mới</p>
                                     </a>
                                 </li>
-                                @* <li class="nav-item">
-                                <a href="~/Admin/Category/Trash" class="nav-link">
-                                <i class="fas fa-angle-right nav-icon"></i>
-                                <p>Thùng rác</p>
-                                </a>
-                                </li> *@
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copyright"></i>
                                 <p>
-                                    Categories
+                                    Thể loại bài viết
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" class="nav-link">
+                                    <a href="~/admin/TheLoaiBaiBaos/Index" asp-area="Admin" asp-controller="Categories" asp-action="Index" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Create" class="nav-link">
+                                    <a href="~/admin/TheLoaiBaiBaos/Create" asp-area="Admin" asp-controller="Categories" asp-action="Create" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Thêm mới</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/Admin/Category/Trash" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Thùng rác</p>
                                     </a>
                                 </li>
                             </ul>
@@ -151,21 +132,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="~/Admin/Products/Index" class="nav-link">
+                                    <a href="~/Admin/BaiBaos/Index" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="~/Admin/Products/Create" class="nav-link">
+                                    <a href="~/Admin/BaiBaos/Create" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Thêm mới</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/Admin/Products/Trash" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Thùng rác</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -211,32 +186,25 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-money-check-alt"></i>
                                 <p>
-                                    Revenue
+                                    Lĩnh vực
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="~/admin/linhvucnbs/index" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="~/admin/linhvucnbs/create" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Thêm mới</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Thùng rác</p>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tag"></i>
@@ -316,12 +284,6 @@
                                         <p>Thêm mới</p>
                                     </a>
                                 </li>
-                                @* <li class="nav-item">
-                                <a href="~/Admin/Payments/Trash" class="nav-link">
-                                <i class="fas fa-angle-right nav-icon"></i>
-                                <p>Thùng rác</p>
-                                </a>
-                                </li> *@
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -386,7 +348,7 @@
                 </li>
 
 
-                <li class="nav-item menu-close">
+                @* <li class="nav-item menu-close">
                     <a href="#" class="nav-link active bg-primary">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -673,7 +635,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> *@
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
