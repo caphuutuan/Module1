@@ -12,6 +12,7 @@ namespace Module1.Models
 
         public int MaTl { get; set; }
         public string? TenTl { get; set; }
+        public string? Description { get; set; }
 
         public virtual ICollection<BaiBao> BaiBaos { get; set; }
     }

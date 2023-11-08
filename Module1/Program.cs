@@ -1,4 +1,6 @@
 using AspNetCoreHero.ToastNotification;
+using Microsoft.EntityFrameworkCore;
+using Module1.Models;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -8,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var strConnectDB = builder.Configuration.GetConnectionString("ChuoiKN");
+builder.Services.AddDbContext<QLNBDBContext>(options => { options.UseSqlServer(strConnectDB); });
 
 builder.Services.AddNotyf(config => { config.DurationInSeconds = 3; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
