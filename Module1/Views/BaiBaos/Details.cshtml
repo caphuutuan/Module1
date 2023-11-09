@@ -1,0 +1,22 @@
+﻿@model Module1.Models.BaiBao
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.TenBb)</h2>
+<p>
+    Tác giả:
+    @Html.DisplayFor(model => model.User.Ten)
+</p>
+<div>
+    <h6>@Html.DisplayFor(model => model.NgayViet)</h6>
+    <hr />
+    <dl class="row">
+        <dd class = "col-sm-12" style="text-align: justify">
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+    </dl>
+</div>
+

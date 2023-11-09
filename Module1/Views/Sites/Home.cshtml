@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Module1.Models.BaiBao>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in ViewBag.Product)
+    {
+        <tr>
+            <td>
+            @Html.DisplayFor(item => item.FirstOrDefault().TenBb)
+            </td>
+        </tr>
+    }
