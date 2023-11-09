@@ -37,9 +37,16 @@ namespace Module1.Areas.Admin.Controllers
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(m => m.UserId == id);
+
             if (user == null)
             {
                 return NotFound();
+            }
+
+            if (user != null)
+            {
+                // Truyền tên tác giả vào view model
+                ViewBag.AuthorName = user.Ten; // Hoặc sử dụng view model để truyền dữ liệu
             }
 
             return View(user);

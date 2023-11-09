@@ -93,6 +93,9 @@ namespace Module1.Areas.Admin.Controllers
 
             List<LinhVucNb> linhvuc = _context.LinhVucNbs.ToList();
             ViewBag.LinhVucList = new SelectList(linhvuc, "MaLinhVuc", "TenLinhVuc");
+
+
+
             return View(baiBao);
         }
 
@@ -109,9 +112,19 @@ namespace Module1.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
-            ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
+            //ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
+            //ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
+            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
+
+            List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
+            ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
+
+            List<TheLoaiBaiBao> theLoaiBaiBaos = _context.TheLoaiBaiBaos.ToList();
+            ViewBag.CategoryList = new SelectList(theLoaiBaiBaos, "MaTl", "TenTl");
+
+            List<LinhVucNb> linhvuc = _context.LinhVucNbs.ToList();
+            ViewBag.LinhVucList = new SelectList(linhvuc, "MaLinhVuc", "TenLinhVuc");
+
             return View(baiBao);
         }
 
@@ -147,9 +160,19 @@ namespace Module1.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
-            ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
+            //ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
+            //ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
+            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
+
+            List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
+            ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
+
+            List<TheLoaiBaiBao> theLoaiBaiBaos = _context.TheLoaiBaiBaos.ToList();
+            ViewBag.CategoryList = new SelectList(theLoaiBaiBaos, "MaTl", "TenTl");
+
+            List<LinhVucNb> linhvuc = _context.LinhVucNbs.ToList();
+            ViewBag.LinhVucList = new SelectList(linhvuc, "MaLinhVuc", "TenLinhVuc");
+
             return View(baiBao);
         }
 
