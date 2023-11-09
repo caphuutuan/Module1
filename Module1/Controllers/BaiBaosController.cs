@@ -21,7 +21,7 @@ namespace Module1.Controllers
         // GET: BaiBaos
         public async Task<IActionResult> Index()
         {
-            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User);
+            var qLNBDBContext = _context.BaiBaos.Include(a => a.Active == true).Include(s=>s.Status==1).Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User);
             return View(await qLNBDBContext.ToListAsync());
         }
 

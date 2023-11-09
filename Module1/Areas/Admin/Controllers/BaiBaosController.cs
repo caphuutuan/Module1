@@ -99,6 +99,32 @@ namespace Module1.Areas.Admin.Controllers
             return View(baiBao);
         }
 
+        public IActionResult DuyetBai(int id)
+        {
+            // Xác nhận và duyệt bài viết
+            var baiBao = _context.BaiBaos.Find(id);
+            if (baiBao != null)
+            {
+                baiBao.Status = 1;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult TuChoiBai(int id)
+        {
+            // Từ chối bài viết
+            var baiBao = _context.BaiBaos.Find(id);
+            if (baiBao != null)
+            {
+                baiBao.Status = 2;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Admin/BaiBaos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
