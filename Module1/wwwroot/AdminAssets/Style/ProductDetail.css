@@ -1,0 +1,15 @@
+﻿.card .card-header .title{
+    text-align: center;
+    justify-content:center;
+    align-items: center;
+}
+
+.noidung-baibao {
+    width: 100% !important;
+    height: 100px !important;
+}
+
+#noidung-baibao {
+    height: 100px !important;
+    width: 100% !important
+}

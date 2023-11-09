@@ -58,8 +58,6 @@ namespace Module1.Models
 
                 entity.Property(e => e.NgayViet).HasColumnType("datetime");
 
-                entity.Property(e => e.NoiDung).HasMaxLength(50);
-
                 entity.Property(e => e.TenBb)
                     .HasMaxLength(50)
                     .HasColumnName("TenBB");
