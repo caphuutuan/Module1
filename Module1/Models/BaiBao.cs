@@ -21,6 +21,7 @@ namespace Module1.Models
         public int Status { get; set; }
         public int? MaLv { get; set; }
         public string? Thumb { get; set; }
+        public bool? Active { get; set; }
 
         public virtual LinhVucNb? MaLvNavigation { get; set; }
         public virtual TheLoaiBaiBao? MaTlNavigation { get; set; }
