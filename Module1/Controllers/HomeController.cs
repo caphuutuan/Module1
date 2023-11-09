@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Module1.Models;
 using System.Diagnostics;
 
@@ -6,16 +7,23 @@ namespace Module1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly QLNBDBContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(QLNBDBContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+        //private readonly ILogger<HomeController> _logger;
 
-        public IActionResult Index()
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User);
+            return View(await qLNBDBContext.ToListAsync());
         }
 
         public IActionResult Privacy()
