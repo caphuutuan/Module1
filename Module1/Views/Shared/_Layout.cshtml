@@ -32,7 +32,21 @@
 
     @await Html.PartialAsync("_Header")
 
-    @RenderBody()
+    <main>
+        <!-- Trending Area Start -->
+        <div class="trending-area fix">
+            <div class="container">
+                <div class="trending-main">
+
+                    @await Html.PartialAsync("_TrendingTittle")
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </main>
+
     @await Html.PartialAsync("_footer")
 
 

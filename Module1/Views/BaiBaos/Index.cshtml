@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Module1.Models.BaiBao>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card-body">
+    <div class="row">
+        <table id="cate1" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Các bài báo mới nhất !
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a class="tenBaiBao" href="~/BaiBaos/Details/@Html.DisplayFor(modelItem => item.MaBb)">
+                                @Html.DisplayFor(modelItem => item.TenBb)
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<style>
+    .tenBaiBao {
+        color: #000;
+        transition: 0s;
+    }
+
+        .tenBaiBao:hover {
+            color: #0011fe
+        }
+</style>
