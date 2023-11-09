@@ -18,7 +18,7 @@ namespace Module1.Models
         public string? NoiDung { get; set; }
         public DateTime? NgayChinhSua { get; set; }
         public string? DanhGia { get; set; }
-        public string? Status { get; set; }
+        public int Status { get; set; }
         public int? MaLv { get; set; }
 
         public virtual LinhVucNb? MaLvNavigation { get; set; }
