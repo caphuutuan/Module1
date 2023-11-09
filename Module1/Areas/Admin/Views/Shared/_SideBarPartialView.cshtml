@@ -52,7 +52,29 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-lock"></i>
+                                <p>
+                                    Roles
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="~/Admin/Roles/Index" asp-area="Admin" asp-controller="Roles" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Danh sách</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="~/admin/roles/create" asp-area="Admin" asp-controller="Roles" asp-action="Create" class="nav-link">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Thêm mới</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -76,23 +98,24 @@
                                 </li>
                             </ul>
                         </li>
+                        
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-lock"></i>
+                                <i class="nav-icon fas fa-money-check-alt"></i>
                                 <p>
-                                    Roles
-                                    <i class="right fas fa-angle-left"></i>
+                                    Lĩnh vực
+                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="~/Admin/Roles/Index" asp-area="Admin" asp-controller="Roles" asp-action="Index" class="nav-link">
+                                    <a href="~/admin/linhvucnbs/index" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="~/admin/roles/create" asp-area="Admin" asp-controller="Roles" asp-action="Create" class="nav-link">
+                                    <a href="~/admin/linhvucnbs/create" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Thêm mới</p>
                                     </a>
@@ -182,30 +205,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>
-                                    Lĩnh vực
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="~/admin/linhvucnbs/index" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Danh sách</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/admin/linhvucnbs/create" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Thêm mới</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
+                        
+                        @* <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tag"></i>
                                 <p>
@@ -343,7 +344,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> *@
                     </ul>
                 </li>
 
