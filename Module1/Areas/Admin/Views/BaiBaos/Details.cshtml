@@ -36,48 +36,40 @@
 
                     <tr>
                         <th scope="col"> @Html.DisplayNameFor(model => model.MaBb)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.MaBb)</td>
-                    </tr>
-                    <tr>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.TenBb )</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.TenBb)</td>
-                    <tr>
-                    <tr>
                         <th scope="col"> @Html.DisplayNameFor(model => model.MaLv)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.MaLv)</td>
-                    </tr>
-                    <tr>
                         <th scope="col"> @Html.DisplayNameFor(model => model.MaTl)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.MaTl)</td>
-                    </tr>
-                    <tr>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.NoiDung)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.NoiDung)</td>
-                    </tr>
-                    <tr>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.NgayViet)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.NgayViet)</td>
-                    </tr>
-                    <tr>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.NgayChinhSua)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.NgayChinhSua)</td>
-                    </tr>
-                    <tr>
+                        <th scope="col">  @Html.DisplayNameFor(model => model.NgayViet)</th>
+                        <th scope="col">  @Html.DisplayNameFor(model => model.NgayChinhSua)</th>
                         <th scope="col"> @Html.DisplayNameFor(model => model.DanhGia)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.DanhGia)</td>
-                    </tr>
-                    <tr>
                         <th scope="col"> @Html.DisplayNameFor(model => model.Status)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.Status)</td>
                     </tr>
                     <tr>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.UserId)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.UserId)</td>
+                        <th scope="col"> @Html.DisplayFor(model => model.MaBb)</th>
+                        <td scope="col">  @Html.DisplayFor(model => model.MaLv)</td>
+                        <td scope="col">  @Html.DisplayFor(model => model.MaTl)</td>
+                        <td scope="col">  @Html.DisplayFor(model => model.NgayViet)</td>
+                        <td scope="col">  @Html.DisplayFor(model => model.NgayChinhSua)</td>
+                        <td scope="col">  @Html.DisplayFor(model => model.DanhGia)</td>
+                        <td scope="col">  @Html.DisplayFor(model => model.Status)</td>
                     </tr>
 
                 </table>
             </div>
+
+            <div class="card">
+                <div class="card-header" style="margin:auto auto">
+                    <h1 class="title h3">@Html.DisplayFor(model => model.TenBb)</h1>
+                </div>
+                <div class="card-body">
+                    <p><strong>Tác giả:</strong> @ViewBag.AuthorName</p>
+                    <hr />
+                    <h4 style="text-align:justify">@Html.DisplayFor(model => model.NoiDung)</h4>
+                </div>
+            </div>
         </div>
+
+
     </div>
 </section>
+
 

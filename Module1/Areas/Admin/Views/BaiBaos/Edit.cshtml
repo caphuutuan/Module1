@@ -5,68 +5,130 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<h4>BaiBao</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MaBb" />
-            <div class="form-group">
-                <label asp-for="MaTl" class="control-label"></label>
-                <select asp-for="MaTl" class="form-control" asp-items="ViewBag.MaTl"></select>
-                <span asp-validation-for="MaTl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TenBb" class="control-label"></label>
-                <input asp-for="TenBb" class="form-control" />
-                <span asp-validation-for="TenBb" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NgayViet" class="control-label"></label>
-                <input asp-for="NgayViet" class="form-control" />
-                <span asp-validation-for="NgayViet" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoiDung" class="control-label"></label>
-                <input asp-for="NoiDung" class="form-control" />
-                <span asp-validation-for="NoiDung" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NgayChinhSua" class="control-label"></label>
-                <input asp-for="NgayChinhSua" class="form-control" />
-                <span asp-validation-for="NgayChinhSua" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DanhGia" class="control-label"></label>
-                <input asp-for="DanhGia" class="form-control" />
-                <span asp-validation-for="DanhGia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaLv" class="control-label"></label>
-                <select asp-for="MaLv" class="form-control" asp-items="ViewBag.MaLv"></select>
-                <span asp-validation-for="MaLv" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    <section class="content py-2">
+        <div class="container-fluid">
+            <!--Content-->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="text-csm">@ViewBag.Title</h5>
+                        </div>
+                        <div class="col-4">
+                            <div class="float-right pt-1">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-save"></i>&nbsp; Update
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <a href="~/Admin/Roles/Index" class="text-white"><i class="fas fa-door-open"></i>&nbsp; Thoát</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                    <div class="col-md-9">
+                        <div class="form-horizontal">
 
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MaBb)
+
+                            <div class="form-group">
+                                <label class="control-label col-md-10">Tên bài báo</label>
+                                @Html.EditorFor(model => model.TenBb , new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenBb, "", new { @class = "text-danger"  })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-10">Thể loại</label>
+                                @Html.DropDownList("MaTl", ViewBag.CategoryList as SelectList, "Chọn thể loại", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MaTl, "", new { @class = "text-danger"  })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-10">Lĩnh vực</label>
+                                @Html.DropDownList("MaLinhVuc", ViewBag.LinhVucList as SelectList, "Chọn lĩnh vực", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MaLv, "", new { @class = "text-danger"  })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="noidung-baibao" class="control-label col-md-10">Nội dung</label>
+                                @Html.TextBoxFor(model => model.NoiDung, new { htmlAttributes= new{ @class = "form-control noidung-baibao", @id="noidung-baibao" }})
+                                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger"  })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-10">Tác giả</label>
+                                @Html.DropDownList("UserId", ViewBag.AuthorList as SelectList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger"  })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-10">Trạng thái</label>
+                                @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "1", Text = "Hiển thị" },new SelectListItem { Value = "2", Text = "Không hiển thị" }, }, "[Trạng thái]", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger"  })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+@* 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#noidung-baibao').summernote({
+                height: 300,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['color', ['forecolor']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture', 'video']],
+                ],
+                callbacks: {
+                    onImageUpload: function (files) {
+                        for (var i = 0; i < files.length; i++) {
+                            uploadImage(files[i]);
+                        }
+                    }
+                }
+                        function uploadImage(file) {
+                var formData = new FormData();
+                formData.append("file", file);
+
+                $.ajax({
+                    url: '/Admin/UploadImage', // Điều chỉnh đường dẫn tải lên hình ảnh
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.success) {
+                            var imgNode = document.createElement('img');
+                            imgNode.src = data.url; // Đường dẫn của hình ảnh sau khi tải lên
+                            $('#content').summernote('insertNode', imgNode);
+                        }
+                    }
+                });
+            }
+            });
+        });
+    </script>
+} *@
