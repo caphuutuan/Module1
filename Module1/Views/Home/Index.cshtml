@@ -13,7 +13,14 @@
         {
             <div class="trending-top mb-30">
                 <div class="trend-top-img">
-                    <img src="~/assets/img/placeholder-1-1.jpg" alt="">
+                    @if (!string.IsNullOrEmpty(item.Thumb))
+                    {
+                        <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/assets/img/placeholder-1-1.jpg")" alt="Placeholder" />
+                    }
                     <div class="trend-top-cap">
                         <span>@Html.DisplayFor(modelItem => item.MaTlNavigation.TenTl)</span>
                         <h2>
@@ -33,7 +40,14 @@
                     <div class="col-lg-4">
                         <div class="single-bottom mb-35">
                             <div class="trend-bottom-img mb-30">
-                                <img src="~/assets/img/placeholder-1-1.jpg" alt="">
+                                @if (!string.IsNullOrEmpty(item.Thumb))
+                                {
+                                    <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" />
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/assets/img/placeholder-1-1.jpg")" alt="Placeholder" />
+                                }
                             </div>
                             <div class="trend-bottom-cap">
                                 <span class="color1">@Html.DisplayFor(modelItem => item.MaTlNavigation.TenTl)</span>
@@ -51,7 +65,14 @@
         {
             <div class="trand-right-single d-flex">
                 <div class="trand-right-img">
-                    <img src="~/assets/img/trending/right1.jpg" alt="" style="width:100%;">
+                    @if (!string.IsNullOrEmpty(item.Thumb))
+                    {
+                        <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" width="100%"/>
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/assets/img/trending/right1.jpg")" alt="Placeholder" width="100%" />
+                    }
                 </div>
                 <div class="trand-right-cap">
                     <span class="color1">@Html.DisplayFor(modelItem => item.MaTlNavigation.TenTl)</span>
