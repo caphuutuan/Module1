@@ -13,12 +13,27 @@ namespace Module1.Models
         public int MaBb { get; set; }
         public int? MaTl { get; set; }
         public int? UserId { get; set; }
-        public string? TenBb { get; set; }
+        public string TenBb { get; set; } = null!;
         public DateTime? NgayViet { get; set; }
         public string? NoiDung { get; set; }
         public DateTime? NgayChinhSua { get; set; }
-        public string? DanhGia { get; set; }
+        public double? DanhGia { get; set; }
         public int Status { get; set; }
+        public string StatusText => GetStatusText(Status);
+
+        private string GetStatusText(int status)
+        {
+            switch (status)
+            {
+                case 0:
+                    return "Chờ duyệt";
+                case 1:
+                    return "Đã duyệt";
+                // Thêm các trạng thái khác nếu cần
+                default:
+                    return "Không xác định";
+            }
+        }
         public int? MaLv { get; set; }
         public string? Thumb { get; set; }
         public bool? Active { get; set; }
