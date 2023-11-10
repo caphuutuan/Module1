@@ -22,7 +22,12 @@ namespace Module1.Areas.Admin.Controllers
         // GET: Admin/BaiBaos
         public async Task<IActionResult> Index()
         {
-            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User);
+            var qLNBDBContext = _context.BaiBaos
+                .Include(b => b.MaLvNavigation)
+                .Include(b => b.MaTlNavigation)
+                .Include(b => b.User);
+
+
             return View(await qLNBDBContext.ToListAsync());
         }
 
@@ -77,6 +82,10 @@ namespace Module1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                baiBao.Status = 2;
+                baiBao.Active = false;
+                baiBao.NgayViet = DateTime.Now;
+                baiBao.DanhGia = 0;
                 _context.Add(baiBao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +95,7 @@ namespace Module1.Areas.Admin.Controllers
             //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
 
             List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
-            ViewBag.AuthorList = new SelectList(tacgia, "UserId", "UserName");
+            ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
 
             List<TheLoaiBaiBao> theLoaiBaiBaos = _context.TheLoaiBaiBaos.ToList();
             ViewBag.CategoryList = new SelectList(theLoaiBaiBaos, "MaTl", "TenTl");
@@ -112,18 +121,18 @@ namespace Module1.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult TuChoiBai(int id)
-        {
-            // Từ chối bài viết
-            var baiBao = _context.BaiBaos.Find(id);
-            if (baiBao != null)
-            {
-                baiBao.Status = 2;
-                _context.SaveChanges();
-            }
+        //public IActionResult TuChoiBai(int id)
+        //{
+        //    // Từ chối bài viết
+        //    var baiBao = _context.BaiBaos.Find(id);
+        //    if (baiBao != null)
+        //    {
+        //        baiBao.Status = 2;
+        //        _context.SaveChanges();
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
         // GET: Admin/BaiBaos/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -170,6 +179,7 @@ namespace Module1.Areas.Admin.Controllers
             {
                 try
                 {
+                    baiBao.NgayChinhSua = DateTime.Now;
                     _context.Update(baiBao);
                     await _context.SaveChangesAsync();
                 }

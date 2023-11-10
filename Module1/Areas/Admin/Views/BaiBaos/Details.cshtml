@@ -1,7 +1,7 @@
 ﻿@model Module1.Models.BaiBao
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết bài báo";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-8">
-                        <h5 class="text-csm">@ViewBag.Title</h5>
+                        <h5 class="text-csm">Chi tiết bài báo #@Model.MaBb</h5>
                     </div>
                     <div class="col-4">
                         <div class="float-right pt-1">
@@ -32,31 +32,37 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table class="table table-bordered table-hover">
 
-                    <tr>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.MaBb)</th>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.MaLv)</th>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.MaTl)</th>
-                        <th scope="col">  @Html.DisplayNameFor(model => model.NgayViet)</th>
-                        <th scope="col">  @Html.DisplayNameFor(model => model.NgayChinhSua)</th>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.DanhGia)</th>
-                        <th scope="col"> @Html.DisplayNameFor(model => model.Status)</th>
-                    </tr>
-                    <tr>
-                        <th scope="col"> @Html.DisplayFor(model => model.MaBb)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.MaLv)</td>
-                        <td scope="col">  @Html.DisplayFor(model => model.MaTl)</td>
-                        <td scope="col">  @Html.DisplayFor(model => model.NgayViet)</td>
-                        <td scope="col">  @Html.DisplayFor(model => model.NgayChinhSua)</td>
-                        <td scope="col">  @Html.DisplayFor(model => model.DanhGia)</td>
-                        <td scope="col">  @Html.DisplayFor(model => model.Status)</td>
-                    </tr>
+                <table class="table table-bordered">
+                    <thead>
+
+                        <tr>
+                            <th scope="col"> Mã bài báo</th>
+                            <th scope="col"> Lĩnh Vực</th>
+                            <th scope="col"> Thể loại</th>
+                            <th scope="col">  Ngày đăng tải</th>
+                            <th scope="col">  Chỉnh sửa lần cuối</th>
+                            <th scope="col"> Đánh giá</th>
+                            <th scope="col"> Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <th scope="col"> @Html.DisplayFor(model => model.MaBb)</th>
+                            <td scope="col">  @Html.DisplayFor(model => model.MaLvNavigation.TenLinhVuc)</td>
+                            <td scope="col">  @Html.DisplayFor(model => model.MaTlNavigation.TenTl)</td>
+                            <td scope="col">  @Html.DisplayFor(model => model.NgayViet)</td>
+                            <td scope="col">  @Html.DisplayFor(model => model.NgayChinhSua)</td>
+                            <td scope="col">  @Html.DisplayFor(model => model.DanhGia)</td>
+                            <td scope="col">  @Html.DisplayFor(model => model.StatusText)</td>
+                        </tr>
+                    </tbody>
 
                 </table>
             </div>
 
-            <div class="card">
+            <div class="card-body">
                 <div class="card-header" style="margin:auto auto">
                     <h1 class="title h3">@Html.DisplayFor(model => model.TenBb)</h1>
                 </div>

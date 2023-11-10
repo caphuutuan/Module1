@@ -48,8 +48,6 @@ namespace Module1.Models
 
                 entity.Property(e => e.MaBb).HasColumnName("MaBB");
 
-                entity.Property(e => e.DanhGia).HasMaxLength(50);
-
                 entity.Property(e => e.MaLv).HasColumnName("MaLV");
 
                 entity.Property(e => e.MaTl).HasColumnName("MaTL");
@@ -58,9 +56,7 @@ namespace Module1.Models
 
                 entity.Property(e => e.NgayViet).HasColumnType("datetime");
 
-                entity.Property(e => e.TenBb)
-                    .HasMaxLength(50)
-                    .HasColumnName("TenBB");
+                entity.Property(e => e.TenBb).HasColumnName("TenBB");
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
