@@ -53,19 +53,19 @@
 
                                     <td>
                                         <a href="~/Admin/Users/Details/@Html.DisplayFor(modelItem => item.UserId)">
-                                            @Html.DisplayFor(modelItem => item.UserId)
+                                            @Html.DisplayFor(modelItem => item.User.Ten)
                                         </a>
                                     </td>
 
                                     <td>
                                         <a href="~/Admin/LinhVucNbs/Details/@Html.DisplayFor(modelItem => item.MaLv)">
-                                            @Html.DisplayFor(modelItem => item.MaLv)
+                                            @Html.DisplayFor(modelItem => item.MaLvNavigation.TenLinhVuc)
                                         </a>
                                     </td>
 
                                     <td>
                                         <a href="~/Admin/TheLoaiBaiBaos/Details/@Html.DisplayFor(modelItem => item.MaTl)">
-                                            @Html.DisplayFor(modelItem => item.MaTl)
+                                            @Html.DisplayFor(modelItem => item.MaTlNavigation.TenTl)
                                         </a>
                                     </td>
                                     <td>  @Html.DisplayFor(modelItem => item.NgayViet)</td>
