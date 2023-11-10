@@ -26,12 +26,12 @@ namespace Module1.Models
             switch (status)
             {
                 case 0:
-                    return "Chờ duyệt";
+                    return "Từ chối";
                 case 1:
                     return "Đã duyệt";
                 // Thêm các trạng thái khác nếu cần
                 default:
-                    return "Không xác định";
+                    return "Đang chờ duyệt";
             }
         }
         public int? MaLv { get; set; }

@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Module1.Models;
 
-namespace Module1.Areas.Admin.Controllers
+namespace Module1.Areas.Journalist.Controllers
 {
-    [Area("Admin")]
+    [Area("Journalist")]
     public class BaiBaosController : Controller
     {
         private readonly QLNBDBContext _context;
@@ -19,7 +19,7 @@ namespace Module1.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/BaiBaos
+        // GET: Journalist/BaiBaos
         public async Task<IActionResult> Index()
         {
             var qLNBDBContext = _context.BaiBaos
@@ -29,7 +29,7 @@ namespace Module1.Areas.Admin.Controllers
             return View(await qLNBDBContext.ToListAsync());
         }
 
-        // GET: Admin/BaiBaos/Details/5
+        // GET: Journalist/BaiBaos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.BaiBaos == null)
@@ -50,13 +50,9 @@ namespace Module1.Areas.Admin.Controllers
             return View(baiBao);
         }
 
-        // GET: Admin/BaiBaos/Create
+        // GET: Journalist/BaiBaos/Create
         public IActionResult Create()
         {
-            //ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "TenLinhVuc");
-            //ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "TenTl");
-            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Ten");
-
             List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
             ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
 
@@ -65,22 +61,20 @@ namespace Module1.Areas.Admin.Controllers
 
             List<LinhVucNb> linhvuc = _context.LinhVucNbs.ToList();
             ViewBag.LinhVucList = new SelectList(linhvuc, "MaLinhVuc", "TenLinhVuc");
-
-
-
             return View();
         }
 
-        // POST: Admin/BaiBaos/Create
+        // POST: Journalist/BaiBaos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv")] BaiBao baiBao)
+        public async Task<IActionResult> Create([Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv,Thumb,Active")] BaiBao baiBao)
         {
             if (ModelState.IsValid)
             {
                 baiBao.Status = 2;
+                baiBao.UserId = 2;
                 baiBao.Active = false;
                 baiBao.NgayViet = DateTime.Now;
                 baiBao.DanhGia = 0;
@@ -88,9 +82,6 @@ namespace Module1.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
-            //ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
-            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
 
             List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
             ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
@@ -101,38 +92,10 @@ namespace Module1.Areas.Admin.Controllers
             List<LinhVucNb> linhvuc = _context.LinhVucNbs.ToList();
             ViewBag.LinhVucList = new SelectList(linhvuc, "MaLinhVuc", "TenLinhVuc");
 
-
-
             return View(baiBao);
         }
 
-        public IActionResult DuyetBai(int id)
-        {
-            // Xác nhận và duyệt bài viết
-            var baiBao = _context.BaiBaos.Find(id);
-            if (baiBao != null)
-            {
-                baiBao.Status = 1;
-                _context.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        //public IActionResult TuChoiBai(int id)
-        //{
-        //    // Từ chối bài viết
-        //    var baiBao = _context.BaiBaos.Find(id);
-        //    if (baiBao != null)
-        //    {
-        //        baiBao.Status = 2;
-        //        _context.SaveChanges();
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
-
-        // GET: Admin/BaiBaos/Edit/5
+        // GET: Journalist/BaiBaos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.BaiBaos == null)
@@ -145,9 +108,6 @@ namespace Module1.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            //ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
-            //ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
-            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
 
             List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
             ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
@@ -161,12 +121,12 @@ namespace Module1.Areas.Admin.Controllers
             return View(baiBao);
         }
 
-        // POST: Admin/BaiBaos/Edit/5
+        // POST: Journalist/BaiBaos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv")] BaiBao baiBao)
+        public async Task<IActionResult> Edit(int id, [Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv,Thumb,Active")] BaiBao baiBao)
         {
             if (id != baiBao.MaBb)
             {
@@ -177,6 +137,7 @@ namespace Module1.Areas.Admin.Controllers
             {
                 try
                 {
+                    baiBao.UserId = 2;
                     baiBao.NgayChinhSua = DateTime.Now;
                     _context.Update(baiBao);
                     await _context.SaveChangesAsync();
@@ -194,9 +155,6 @@ namespace Module1.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["MaLv"] = new SelectList(_context.LinhVucNbs, "MaLinhVuc", "MaLinhVuc", baiBao.MaLv);
-            //ViewData["MaTl"] = new SelectList(_context.TheLoaiBaiBaos, "MaTl", "MaTl", baiBao.MaTl);
-            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", baiBao.UserId);
 
             List<User> tacgia = _context.Users.Where(u => u.RoleId == 3).ToList();
             ViewBag.AuthorList = new SelectList(tacgia, "UserId", "Ten");
@@ -210,7 +168,7 @@ namespace Module1.Areas.Admin.Controllers
             return View(baiBao);
         }
 
-        // GET: Admin/BaiBaos/Delete/5
+        // GET: Journalist/BaiBaos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.BaiBaos == null)
@@ -231,7 +189,7 @@ namespace Module1.Areas.Admin.Controllers
             return View(baiBao);
         }
 
-        // POST: Admin/BaiBaos/Delete/5
+        // POST: Journalist/BaiBaos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -245,14 +203,14 @@ namespace Module1.Areas.Admin.Controllers
             {
                 _context.BaiBaos.Remove(baiBao);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BaiBaoExists(int id)
         {
-          return (_context.BaiBaos?.Any(e => e.MaBb == id)).GetValueOrDefault();
+            return (_context.BaiBaos?.Any(e => e.MaBb == id)).GetValueOrDefault();
         }
     }
 }
