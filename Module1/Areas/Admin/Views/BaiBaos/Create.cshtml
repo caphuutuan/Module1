@@ -97,7 +97,7 @@
 
                                 <div class="form-group">
                                     <label class="control-label col-md-10">Trạng thái</label>
-                                    @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "0", Text = "Hiển thị" },new SelectListItem { Value = "1", Text = "Không hiển thị" }, }, "[Trạng thái]", new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "1", Text = "Hiển thị" },new SelectListItem { Value = "2", Text = "Không hiển thị" }, }, "[Trạng thái]", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger"  })
                                 </div>
 

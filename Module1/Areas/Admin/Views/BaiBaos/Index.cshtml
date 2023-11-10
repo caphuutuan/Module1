@@ -37,6 +37,7 @@
                                 <th class="no-sort">Lĩnh vực</th>
                                 <th class="no-sort">Thể loại</th>
                                 <th class="no-sort">Ngày viết</th>
+                                <th class="no-sort">Status</th>
                                 <th class="no-sort text-center" style="width:10rem">Action</th>
                             </tr>
                         </thead>
@@ -69,6 +70,7 @@
                                         </a>
                                     </td>
                                     <td>  @Html.DisplayFor(modelItem => item.NgayViet)</td>
+                                    <td>  @Html.DisplayFor(modelItem => item.StatusText)</td>
                                     <td class="text-center">
                                         <label class="switch">
                                             @if (item.Status == 0)

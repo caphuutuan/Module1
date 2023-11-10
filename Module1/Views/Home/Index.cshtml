@@ -61,7 +61,28 @@
     </div>
     <!-- Riht content -->
     <div class="col-lg-4">
-        @foreach (var item in Model.Take(10))
+        <h3>Bản tin văn hoá</h3>
+        @foreach (var item in Model.Take(10).Where(b => b.MaTl == 3))
+        {
+            <div class="trand-right-single d-flex">
+                <div class="trand-right-img">
+                    @if (!string.IsNullOrEmpty(item.Thumb))
+                    {
+                        <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" width="100%" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/assets/img/trending/right1.jpg")" alt="Placeholder" width="100%" />
+                    }
+                </div>
+                <div class="trand-right-cap">
+                    <span class="color1">@Html.DisplayFor(modelItem => item.MaTlNavigation.TenTl)</span>
+                    <h4><a href="~/BaiBaos/Details/@Html.DisplayFor(modelItem => item.MaBb)">@Html.DisplayFor(modelItem => item.TenBb)</a></h4>
+                </div>
+            </div>
+        }
+        <h3>Tin chính trị</h3>
+        @foreach (var item in Model.Take(10).Where(b => b.MaTl == 2))
         {
             <div class="trand-right-single d-flex">
                 <div class="trand-right-img">
@@ -80,5 +101,6 @@
                 </div>
             </div>
         }
+        
     </div>
 </div>
