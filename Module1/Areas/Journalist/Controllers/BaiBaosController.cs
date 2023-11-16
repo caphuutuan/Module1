@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Module1.Helper;
 using Module1.Models;
 
 namespace Module1.Areas.Journalist.Controllers
@@ -25,7 +26,9 @@ namespace Module1.Areas.Journalist.Controllers
             var qLNBDBContext = _context.BaiBaos
                 .Include(b => b.MaLvNavigation)
                 .Include(b => b.MaTlNavigation)
+                .Where(b=>b.UserId==2)
                 .Include(b => b.User);
+
             return View(await qLNBDBContext.ToListAsync());
         }
 
@@ -69,15 +72,27 @@ namespace Module1.Areas.Journalist.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv,Thumb,Active")] BaiBao baiBao)
+        public async Task<IActionResult> Create([Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv,Thumb,Active")] BaiBao baiBao, IFormFile fThumb)
         {
             if (ModelState.IsValid)
             {
-                baiBao.Status = 2;
+                baiBao.Status = 0;
                 baiBao.UserId = 2;
-                baiBao.Active = false;
                 baiBao.NgayViet = DateTime.Now;
                 baiBao.DanhGia = 0;
+
+                baiBao.TenBb = Utilities.ToTitleCase(baiBao.TenBb);
+                if (fThumb != null)
+                {
+                    string extension = Path.GetExtension(fThumb.FileName);
+                    string image = Utilities.SEOUrl(baiBao.TenBb) + extension;
+                    baiBao.Thumb = await Utilities.UploadFile(fThumb, @"products", image.ToLower());
+                }
+                if (string.IsNullOrEmpty(baiBao.Thumb))
+                {
+                    baiBao.Thumb = "placeholder.jpg";
+                }
+
                 _context.Add(baiBao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -126,7 +141,7 @@ namespace Module1.Areas.Journalist.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv,Thumb,Active")] BaiBao baiBao)
+        public async Task<IActionResult> Edit(int id, [Bind("MaBb,MaTl,UserId,TenBb,NgayViet,NoiDung,NgayChinhSua,DanhGia,Status,MaLv,Thumb,Active")] BaiBao baiBao, IFormFile fThumb)
         {
             if (id != baiBao.MaBb)
             {
@@ -137,7 +152,20 @@ namespace Module1.Areas.Journalist.Controllers
             {
                 try
                 {
+                    baiBao.TenBb = Utilities.ToTitleCase(baiBao.TenBb);
+                    if (fThumb != null)
+                    {
+                        string extension = Path.GetExtension(fThumb.FileName);
+                        string image = Utilities.SEOUrl(baiBao.TenBb) + extension;
+                        baiBao.Thumb = await Utilities.UploadFile(fThumb, @"products", image.ToLower());
+                    }
+                    if (string.IsNullOrEmpty(baiBao.Thumb))
+                    {
+                        baiBao.Thumb = "placeholder.jpg";
+                    }
+
                     baiBao.UserId = 2;
+                    baiBao.NgayViet = baiBao.NgayViet;
                     baiBao.NgayChinhSua = DateTime.Now;
                     _context.Update(baiBao);
                     await _context.SaveChangesAsync();

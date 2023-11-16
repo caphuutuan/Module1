@@ -5,7 +5,7 @@
     Layout = "~/Areas/Journalist/Views/Shared/_JournalistLayout.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "BaiBaos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -58,11 +58,11 @@
 
                                 <div class="form-group">
                                     <label class="control-label col-md-10">Nội dung</label>
-                                    @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control"} })
                                     @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger"  })
                                 </div>
 
-                                <div class="form-group">
+                               @*  <div class="form-group">
                                     <label for="exampleInputFile">Ảnh bìa</label>
                                     <div class="input-group">
                                         <div class="custom-file">
@@ -70,6 +70,12 @@
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                     </div>
+                                </div> *@
+
+                                <div class="form-group">
+                                    <label for="Thumb">Thumb</label>
+                                    <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+                                    @Html.ValidationMessageFor(model => model.Thumb, "", new { @class = "text-danger"  })
                                 </div>
 
                                 @* <div class="form-group">
@@ -89,11 +95,11 @@
                         <div class="col-md-3">
                             <div class="form-horizontal">
 
-                                @* <div class="form-group">
+                                <div class="form-group">
                                     <label class="control-label col-md-10">Trạng thái</label>
-                                    @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "1", Text = "Hiển thị" },new SelectListItem { Value = "2", Text = "Không hiển thị" }, }, "[Trạng thái]", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger"  })
-                                </div> *@
+                                    @Html.DropDownListFor(model => model.Active,  new[] { new SelectListItem { Value = "true", Text = "Active" },new SelectListItem { Value = "false", Text = "InActive" }, }, "[Trạng thái]", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger"  })
+                                </div>
 
                             </div>
                         </div>

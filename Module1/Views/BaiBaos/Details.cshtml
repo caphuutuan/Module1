@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
+<div class="container mt-5 mb-50">
     <div class="row">
         <div class="col-lg-12">
             <!-- Post content-->
@@ -15,14 +15,14 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">@Html.DisplayFor(model=>model.TenBb)</h1>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Được đăng tải ngày @Html.DisplayFor(model=>model.NgayViet) bởi @Html.DisplayFor(model=>model.User.Ten)</div>
+                    <div class="text-muted fst-italic mb-2">Được đăng tải ngày @Html.DisplayFor(model=>model.NgayViet) | bởi @Html.DisplayFor(model=>model.User.Ten)</div>
                     <div class="text-muted fst-italic mb-2">Chỉnh sửa lần cuối @Html.DisplayFor(model=>model.NgayChinhSua)</div>
                     <!-- Post categories-->
                     <a class="badge bg-secondary text-decoration-none link-light" style="padding: 0.5em 1em !important;" href="#!">@Html.DisplayFor(model=>model.MaLvNavigation.TenLinhVuc)</a>
                     <a class="badge bg-secondary text-decoration-none link-light" style="padding: 0.5em 1em !important;" href="#!">@Html.DisplayFor(model=>model.MaTlNavigation.TenTl)</a>
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="@Html.DisplayFor(model=>model.Thumb)" alt="..." /></figure>
+                <figure class="mb-4"><img class="img-fluid rounded "  style="display:flex; margin: auto auto; height:500px; margin-top: 40px;" src="~/images/products/@Model.Thumb" alt="ảnh bìa" /></figure>
                 <!-- Post content-->
                 <section class="mb-5">
                     <p class="fs-5 mb-4">@Html.DisplayFor(model=>model.NoiDung)</p>

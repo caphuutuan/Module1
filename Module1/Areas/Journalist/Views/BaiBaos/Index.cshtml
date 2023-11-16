@@ -37,12 +37,13 @@
                                 <th class="no-sort">Lĩnh vực</th>
                                 <th class="no-sort">Thể loại</th>
                                 <th class="no-sort">Ngày viết</th>
-                                <th class="no-sort">Status</th>
+                                <th class="no-sort text-center" style="width:5rem; text-align: center;">Status</th>
+                                <th class="no-sort text-center">Active</th>
                                 <th class="no-sort text-center" style="width:10rem">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.Where(u=>u.UserId==2))
+                            @foreach (var item in Model.Where(u => u.UserId == 2))
                             {
                                 <tr>
                                     <td class="text-center">@Html.DisplayFor(modelItem => item.MaBb)</td>
@@ -53,7 +54,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="~/Journalist/Users/Details/@Html.DisplayFor(modelItem => item.UserId)">
+                                        <a href="~/Admin/Users/Details/@Html.DisplayFor(modelItem => item.UserId)">
                                             @Html.DisplayFor(modelItem => item.User.Ten)
                                         </a>
                                     </td>
@@ -70,19 +71,47 @@
                                         </a>
                                     </td>
                                     <td>  @Html.DisplayFor(modelItem => item.NgayViet)</td>
-                                    <td>  @Html.DisplayFor(modelItem => item.StatusText)</td>
+                                    <td style ="text-align: center; width: 5rem;">
+                                        @* @Html.DisplayFor(modelItem => item.StatusText) *@
+                                        @if (item.Status == 1)
+                                        {
+                                            <p>Đã duyệt</p>
+                                            <i class="fas fa-check" style="color: #1fe059;"></i>
+
+                                        }
+                                        else if(item.Status==2)
+                                        {
+                                            <p>Từ chối</p>
+                                            <i class="fas fa-times" style="color: #cf3907;"></i>
+                                        }
+                                        else
+                                        {
+                                            <p>Đang chờ duyệt</p>
+                                            <i class="fas fa-sync-alt fa-spin" style="color: #727883;"></i>
+                                        }
+                                    </td>                             
                                     <td class="text-center">
-                                       @*  <label class="switch">
-                                            @if (item.Status == 0)
-                                            {
-                                                <input class="changeStatus" data-id="@item.MaBb" data-controller="Roles" type="checkbox" checked>
-                                            }
-                                            else
-                                            {
-                                                <input class="changeStatus" data-id="@item.MaBb" data-controller="Roles" type="checkbox">
-                                            }
-                                            <span class="slider round"></span>
-                                        </label> *@
+                                        @if(item.Active==true){
+                                            <p>Đã gửi</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Chưa gửi</p>                                            
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        @*  <label class="switch">
+                                    @if (item.Status == 0)
+                                    {
+                                    <input class="changeStatus" data-id="@item.MaBb" data-controller="Roles" type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                    <input class="changeStatus" data-id="@item.MaBb" data-controller="Roles" type="checkbox">
+                                    }
+                                    <span class="slider round"></span>
+                                    </label> *@
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa">
                                             <a href="@Url.Action("Edit", "BaiBaos", new { id = item.MaBb })" class="text-white"><i class="fas fa-pen"></i></a>
                                         </button>
@@ -93,7 +122,7 @@
                                 </tr>
                             }
                         </tbody>
-                    </table>                    
+                    </table>
                 </div>
             </div>
         </div>

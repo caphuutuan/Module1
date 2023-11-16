@@ -59,11 +59,20 @@
                     <tr>
                     <tr>
                         <th scope="col"> @Html.DisplayNameFor(model => model.RoleId)</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.RoleId)</td>
+                        <td scope="col">  @Html.DisplayFor(model => model.Role.Description)</td>
                     </tr>
                     <tr>
                         <th scope="col"> @Html.DisplayNameFor(model => model.Status )</th>
-                        <td scope="col">  @Html.DisplayFor(model => model.Status)</td>
+                        <td scope="col"> 
+                                                    @if (Model.Status == 1)
+                                                    {
+                                <span>Đang hoạt động</span>
+                                                    }
+                                                    else if (Model.Status == 2)
+                                                    {
+                                <span>Không hoạt động</span>
+                                                    }
+                            </td>
                     <tr>
                 </table>
             </div>

@@ -12,10 +12,11 @@
         @foreach (var item in Model.Take(1))
         {
             <div class="trending-top mb-30">
-                <div class="trend-top-img">
+                <div class="trend-top-img" style="border-radius: 6px">
                     @if (!string.IsNullOrEmpty(item.Thumb))
                     {
-                        <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" />
+                        @* <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" /> *@
+                        <img src="~/images/products/@item.Thumb" alt="Thumbnail" style="height: 500px; object-fit: contain; "/>
                     }
                     else
                     {
@@ -42,7 +43,7 @@
                             <div class="trend-bottom-img mb-30">
                                 @if (!string.IsNullOrEmpty(item.Thumb))
                                 {
-                                    <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" />
+                                    <img src="~/images/products/@item.Thumb" alt="Thumbnail" style="width:100%"/>
                                 }
                                 else
                                 {
@@ -68,11 +69,11 @@
                 <div class="trand-right-img">
                     @if (!string.IsNullOrEmpty(item.Thumb))
                     {
-                        <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" width="100%" />
+                        <img src="~/images/products/@item.Thumb" alt="Thumbnail"  height="150" width="150" />
                     }
                     else
                     {
-                        <img src="@Url.Content("~/assets/img/trending/right1.jpg")" alt="Placeholder" width="100%" />
+                        <img src="@Url.Content("~/assets/img/trending/right1.jpg")" alt="Placeholder" width="100" />
                     }
                 </div>
                 <div class="trand-right-cap">
@@ -88,11 +89,11 @@
                 <div class="trand-right-img">
                     @if (!string.IsNullOrEmpty(item.Thumb))
                     {
-                        <img src="@Url.Content("~/assets/img/" + item.Thumb)" alt="Thumbnail" width="100%"/>
+                        <img src="~/images/products/@item.Thumb" alt="Thumbnail" height="150" width="150" />
                     }
                     else
                     {
-                        <img src="@Url.Content("~/assets/img/trending/right1.jpg")" alt="Placeholder" width="100%" />
+                        <img src="@Url.Content("~/assets/img/trending/right1.jpg")" alt="Placeholder" width="100" />
                     }
                 </div>
                 <div class="trand-right-cap">

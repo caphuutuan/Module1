@@ -21,7 +21,7 @@ namespace Module1.Controllers
         // GET: BaiBaos
         public async Task<IActionResult> Index()
         {
-            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User);
+            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User).Where(b=>b.Active==true);
             return View(await qLNBDBContext.ToListAsync());
         }
 
@@ -166,14 +166,14 @@ namespace Module1.Controllers
         //    {
         //        _context.BaiBaos.Remove(baiBao);
         //    }
-            
+
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
 
         private bool BaiBaoExists(int id)
         {
-          return (_context.BaiBaos?.Any(e => e.MaBb == id)).GetValueOrDefault();
+            return (_context.BaiBaos?.Any(e => e.MaBb == id)).GetValueOrDefault();
         }
     }
 }

@@ -173,7 +173,7 @@
         });
     </script>
 
-    @* <script>
+    <script>
         $(document).ready(function () {
             $('#noidung-baibao').summernote({
                 height: 300, // Độ cao của trình soạn thảo
@@ -191,7 +191,18 @@
                 }
             });
         });
-    </script> *@
+    </script>
+    <script>
+        $(function () {
+            $('.textarea').summernote()
+        })
+    </script>
 
+    <script>
+        $(function () {
+            // Summernote
+            $('#summernote').summernote()
+        })
+    </script>
 </body>
 </html>
