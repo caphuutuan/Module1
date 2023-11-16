@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Areas/Journalist/Views/Shared/_JournalistLayout.cshtml";
 }
 
 @using (Html.BeginForm())
@@ -24,7 +24,7 @@
                                     <i class="fas fa-save"></i>&nbsp; Save
                                 </button>
                                 <button type="button" class="btn btn-danger btn-sm">
-                                    <a href="~/Admin/BaiBaos/Index" class="text-white"><i class="fas fa-door-open"></i>&nbsp; Thoát</a>
+                                    <a href="~/Journalist/BaiBaos/Index" class="text-white"><i class="fas fa-door-open"></i>&nbsp; Thoát</a>
                                 </button>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
+                                    <label for="exampleInputFile">Ảnh bìa</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="exampleInputFile">
@@ -72,34 +72,28 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                @* <div class="form-group">
                                     <label for="exampleInputFile">Thumb</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            @* <input type="file" class="custom-file-input" id="exampleInputFile"> *@
+                                             <input type="file" class="custom-file-input" id="exampleInputFile">
                                             @Html.EditorFor(model=>model.Thumb, new {htmlAttributes = new {@class="custom-file-input"}, @id="exampleInputFile"})
                                             <label class="custom-file-label" for="exampleInputFile">Upload File</label>
                                             @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger"  })
                                         </div>
                                     </div>
-                                </div>
+                                </div> *@
 
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-horizontal">
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-10">Tác giả</label>
-                                    @Html.DropDownList("UserId", ViewBag.AuthorList as SelectList, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger"  })
-                                </div>
-
-                                <div class="form-group">
+                                @* <div class="form-group">
                                     <label class="control-label col-md-10">Trạng thái</label>
                                     @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "1", Text = "Hiển thị" },new SelectListItem { Value = "2", Text = "Không hiển thị" }, }, "[Trạng thái]", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger"  })
-                                </div>
+                                </div> *@
 
                             </div>
                         </div>

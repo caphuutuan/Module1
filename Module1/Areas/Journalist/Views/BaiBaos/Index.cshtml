@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Areas/Journalist/Views/Shared/_JournalistLayout.cshtml";
 }
 
 
@@ -18,7 +18,7 @@
                     <div class="col-4">
                         <div class="float-right pt-1">
                             <button type="button" class="btn btn-primary btn-sm">
-                                <a href="~/Admin/BaiBaos/Create" class="text-white"><i class="fas fa-plus fa-xs"></i>&nbsp; Thêm mới</a>
+                                <a href="~/Journalist/BaiBaos/Create" class="text-white"><i class="fas fa-plus fa-xs"></i>&nbsp; Thêm mới</a>
                             </button>
                         </div>
                     </div>
@@ -42,37 +42,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Where(u=>u.UserId==2))
                             {
                                 <tr>
                                     <td class="text-center">@Html.DisplayFor(modelItem => item.MaBb)</td>
                                     <td>
-                                        <a href="~/Admin/BaiBaos/Details/@Html.DisplayFor(modelItem => item.MaBb)">
+                                        <a href="~/Journalist/BaiBaos/Details/@Html.DisplayFor(modelItem => item.MaBb)">
                                             @Html.DisplayFor(modelItem => item.TenBb)
                                         </a>
                                     </td>
 
                                     <td>
-                                        <a href="~/Admin/Users/Details/@Html.DisplayFor(modelItem => item.UserId)">
+                                        <a href="~/Journalist/Users/Details/@Html.DisplayFor(modelItem => item.UserId)">
                                             @Html.DisplayFor(modelItem => item.User.Ten)
                                         </a>
                                     </td>
 
                                     <td>
-                                        <a href="~/Admin/LinhVucNbs/Details/@Html.DisplayFor(modelItem => item.MaLv)">
+                                        <a href="~/Journalist/LinhVucNbs/Details/@Html.DisplayFor(modelItem => item.MaLv)">
                                             @Html.DisplayFor(modelItem => item.MaLvNavigation.TenLinhVuc)
                                         </a>
                                     </td>
 
                                     <td>
-                                        <a href="~/Admin/TheLoaiBaiBaos/Details/@Html.DisplayFor(modelItem => item.MaTl)">
+                                        <a href="~/Journalist/TheLoaiBaiBaos/Details/@Html.DisplayFor(modelItem => item.MaTl)">
                                             @Html.DisplayFor(modelItem => item.MaTlNavigation.TenTl)
                                         </a>
                                     </td>
                                     <td>  @Html.DisplayFor(modelItem => item.NgayViet)</td>
                                     <td>  @Html.DisplayFor(modelItem => item.StatusText)</td>
                                     <td class="text-center">
-                                        <label class="switch">
+                                       @*  <label class="switch">
                                             @if (item.Status == 0)
                                             {
                                                 <input class="changeStatus" data-id="@item.MaBb" data-controller="Roles" type="checkbox" checked>
@@ -82,7 +82,7 @@
                                                 <input class="changeStatus" data-id="@item.MaBb" data-controller="Roles" type="checkbox">
                                             }
                                             <span class="slider round"></span>
-                                        </label>
+                                        </label> *@
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa">
                                             <a href="@Url.Action("Edit", "BaiBaos", new { id = item.MaBb })" class="text-white"><i class="fas fa-pen"></i></a>
                                         </button>

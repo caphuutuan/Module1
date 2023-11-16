@@ -22,7 +22,7 @@ namespace Module1.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User);
+            var qLNBDBContext = _context.BaiBaos.Include(b => b.MaLvNavigation).Include(b => b.MaTlNavigation).Include(b => b.User).Where(b => b.Status == 1);
             return View(await qLNBDBContext.ToListAsync());
         }
 

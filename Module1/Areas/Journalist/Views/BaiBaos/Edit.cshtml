@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Areas/Journalist/Views/Shared/_JournalistLayout.cshtml";
 }
 
 @using (Html.BeginForm())
@@ -24,7 +24,7 @@
                                     <i class="fas fa-save"></i>&nbsp; Update
                                 </button>
                                 <button type="button" class="btn btn-danger btn-sm">
-                                    <a href="~/Admin/BaiBaos/Index" class="text-white"><i class="fas fa-door-open"></i>&nbsp; Thoát</a>
+                                    <a href="~/Journalist/BaiBaos/Index" class="text-white"><i class="fas fa-door-open"></i>&nbsp; Thoát</a>
                                 </button>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="col-md-3">
                         <div class="form-horizontal">
 
-                            <div class="form-group">
+                            @* <div class="form-group">
                                 <label class="control-label col-md-10">Tác giả</label>
                                 @Html.DropDownList("UserId", ViewBag.AuthorList as SelectList, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger"  })
@@ -76,10 +76,10 @@
 
                             <div class="form-group">
                                 <label class="control-label col-md-10">Trạng thái</label>
-                                @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "0", Text = "Từ chối" },new SelectListItem { Value = "1", Text = "Duyệt" }, }, "[Trạng thái]", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Status,  new[] { new SelectListItem { Value = "1", Text = "Hiển thị" },new SelectListItem { Value = "2", Text = "Không hiển thị" }, }, "[Trạng thái]", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger"  })
                             </div>
-
+ *@
                         </div>
                     </div>
                 </div>
